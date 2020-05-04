@@ -27,17 +27,16 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  Color backgroundColor = generateRandomColor();
+  Color _backgroundColor = generateRandomColor();
 
   void setRandomBackgroundColor() {
     setState(() {
-      backgroundColor = generateRandomColor();
+      _backgroundColor = generateRandomColor();
     });
   }
 
   static Color generateRandomColor() {
-    return Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-        .withOpacity(1.0);
+    return Color(math.Random().nextInt(0xFFFFFFFF)).withOpacity(1.0);
   }
 
   @override
@@ -45,7 +44,7 @@ class MainPageState extends State<MainPage> {
     return GestureDetector(
         onTap: setRandomBackgroundColor,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: _backgroundColor,
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -53,7 +52,7 @@ class MainPageState extends State<MainPage> {
                 Text(
                   'Hey there',
                   style:
-                      TextStyle(color: backgroundColor.getContrastColor(), fontSize: 30),
+                      TextStyle(color: _backgroundColor.getContrastColor(), fontSize: 30),
                 ),
               ],
             ),
